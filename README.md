@@ -2,7 +2,7 @@
 
 > Utility functions for Morphsync applications including encoding, hashing, OTP generation, and serialization.
 
-[![npm version](https://img.shields.io/npm/v/@morphsync%2Futils)](https://www.npmjs.com/package/@morphsync/utils)
+[![npm version](https://img.shields.io/npm/v/@morphsync/utils.svg)](https://www.npmjs.com/package/@morphsync/utils)
 [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
 
 ## Features
@@ -31,7 +31,7 @@ const { sha1, generateOtp, base64Encode, serializeObject } = require('@morphsync
 const hash = sha1('myPassword123');
 
 // Generate OTP
-const otp = generateOtp(6); // "482916"
+const otp = generateOtp(6);
 
 // Encode data
 const encoded = base64Encode('Hello World');
@@ -72,11 +72,11 @@ const token = sha1(email + timestamp + secret);
 const { generateOtp } = require('@morphsync/utils');
 
 // Generate 6-digit OTP (default)
-const otp = generateOtp(); // "482916"
+const otp = generateOtp();
 
 // Generate custom length OTP
-const shortOtp = generateOtp(4); // "7293"
-const longOtp = generateOtp(8); // "84729163"
+const shortOtp = generateOtp(4);
+const longOtp = generateOtp(8);
 
 // Use in authentication
 const userOtp = generateOtp(6);
@@ -91,10 +91,10 @@ await sendOtpEmail(userEmail, userOtp);
 const { base64Encode, base64Decode } = require('@morphsync/utils');
 
 // Encode string
-const encoded = base64Encode('Hello World'); // "SGVsbG8gV29ybGQ="
+const encoded = base64Encode('Hello World');
 
 // Decode string
-const decoded = base64Decode('SGVsbG8gV29ybGQ='); // "Hello World"
+const decoded = base64Decode('SGVsbG8gV29ybGQ=');
 
 // Encode JSON
 const token = base64Encode(JSON.stringify({ userId: 123 }));
@@ -111,14 +111,13 @@ const data = JSON.parse(base64Decode(token));
 const { convertToPlainText } = require('@morphsync/utils');
 
 // Remove markdown formatting
-const plain = convertToPlainText('*Hello* _world_'); // "Hello world"
+const plain = convertToPlainText('*Hello* _world_');
 
 // Decode HTML entities
-const decoded = convertToPlainText('Hello &amp; goodbye'); // "Hello & goodbye"
+const decoded = convertToPlainText('Hello &amp; goodbye');
 
 // Combined example
-const text = convertToPlainText('*Bold* &amp; _italic_\n\nNew line');
-// Result: "Bold & italic New line"
+const text = convertToPlainText('*Bold* &amp; _italic_');
 ```
 
 ### String Utilities
@@ -129,14 +128,14 @@ const text = convertToPlainText('*Bold* &amp; _italic_\n\nNew line');
 const { stringPad } = require('@morphsync/utils');
 
 // Pad with zeros
-const id = stringPad(1, 6, '0'); // "000001"
+const id = stringPad(1, 6, '0');
 
 // Pad with custom character
-const masked = stringPad(42, 8, '*'); // "******42"
+const masked = stringPad(42, 8, '*');
 
 // Generate formatted IDs
-const orderId = `ORD-${stringPad(123, 8, '0')}`; // "ORD-00000123"
-const invoiceNo = `INV-${stringPad(456, 6, '0')}`; // "INV-000456"
+const orderId = `ORD-${stringPad(123, 8, '0')}`;
+const invoiceNo = `INV-${stringPad(456, 6, '0')}`;
 ```
 
 ### Serialization
@@ -160,12 +159,11 @@ const serialized = serializeObject(customError);
 
 // Serialize primitive
 const stringError = serializeObject('Simple error');
-// Result: { message: "Simple error" }
 ```
 
 ## API Reference
 
-### `sha1(data)`
+### sha1(data)
 
 Generates a SHA-1 hash for the given data.
 
@@ -174,7 +172,7 @@ Generates a SHA-1 hash for the given data.
 
 **Returns:** SHA-1 hash in hexadecimal format (40 characters)
 
-### `generateOtp(length)`
+### generateOtp(length)
 
 Generates a cryptographically secure OTP consisting of digits only.
 
@@ -183,7 +181,7 @@ Generates a cryptographically secure OTP consisting of digits only.
 
 **Returns:** OTP as a string of digits
 
-### `base64Encode(data)`
+### base64Encode(data)
 
 Encodes a string to Base64 format.
 
@@ -192,7 +190,7 @@ Encodes a string to Base64 format.
 
 **Returns:** Base64 encoded string
 
-### `base64Decode(data)`
+### base64Decode(data)
 
 Decodes a Base64 encoded string.
 
@@ -201,7 +199,7 @@ Decodes a Base64 encoded string.
 
 **Returns:** Decoded UTF-8 string
 
-### `convertToPlainText(formattedText)`
+### convertToPlainText(formattedText)
 
 Converts formatted text (markdown and HTML entities) into plain text.
 
@@ -210,7 +208,7 @@ Converts formatted text (markdown and HTML entities) into plain text.
 
 **Returns:** Plain text without formatting
 
-### `stringPad(num, length, char)`
+### stringPad(num, length, char)
 
 Pads a number or string to a specified length with a given character.
 
@@ -221,7 +219,7 @@ Pads a number or string to a specified length with a given character.
 
 **Returns:** Padded string
 
-### `serializeObject(error)`
+### serializeObject(error)
 
 Safely converts any error or object into a JSON-serializable object.
 
@@ -313,13 +311,13 @@ const decodedData = base64Decode(encodedData);
 const user = JSON.parse(decodedData);
 
 // Process email content for SMS
-const emailBody = '*Important* notification &amp; update\n\nDetails here';
+const emailBody = '*Important* notification &amp; update';
 const plainText = convertToPlainText(emailBody);
 await sendSms(phoneNumber, plainText);
 
 // Generate formatted IDs
-const orderId = `ORD-${stringPad(123, 8, '0')}`; // "ORD-00000123"
-const invoiceNo = `INV-${stringPad(456, 6, '0')}`; // "INV-000456"
+const orderId = `ORD-${stringPad(123, 8, '0')}`;
+const invoiceNo = `INV-${stringPad(456, 6, '0')}`;
 ```
 
 ### Express Controller
@@ -388,6 +386,3 @@ Morphsync
 ## Support
 
 For issues and questions, please visit the [GitHub repository](https://github.com/morphsync/morphsync-utils).
-#   m o r p h s y n c - u t i l s 
- 
- 
